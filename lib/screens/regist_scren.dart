@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:login_session/components/custom_text_form.dart';
+import 'package:login_session/screens/home_screen.dart';
 import 'package:login_session/screens/login_screen.dart';
 
 class RegistScren extends StatelessWidget {
@@ -32,7 +34,11 @@ class RegistScren extends StatelessWidget {
                   foregroundColor: WidgetStatePropertyAll(Colors.white),
                   backgroundColor: WidgetStatePropertyAll(Color(0xFFEB5425)),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(
+                    context,
+                  ).push(MaterialPageRoute(builder: (context) => HomeScreen()));
+                },
                 child: Text('Sign Up'),
               ),
             ),

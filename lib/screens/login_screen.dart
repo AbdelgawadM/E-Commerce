@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:login_session/components/custom_text_form.dart';
+import 'package:login_session/screens/forget_screen.dart';
+import 'package:login_session/screens/home_screen.dart';
 import 'package:login_session/screens/regist_scren.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -26,7 +29,11 @@ class LoginScreen extends StatelessWidget {
                   foregroundColor: WidgetStatePropertyAll(Colors.white),
                   backgroundColor: WidgetStatePropertyAll(Color(0xFFEB5425)),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(
+                    context,
+                  ).push(MaterialPageRoute(builder: (context) => HomeScreen()));
+                },
                 child: Text('Login'),
               ),
             ),
@@ -34,7 +41,12 @@ class LoginScreen extends StatelessWidget {
               alignment: Alignment.bottomRight,
               child: TextButton(
                 child: Text('forget password'),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ForgetScreen()),
+                  );
+                },
               ),
             ),
             Row(
@@ -53,26 +65,6 @@ class LoginScreen extends StatelessWidget {
               ],
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class CustomTextForm extends StatelessWidget {
-  const CustomTextForm({super.key, required this.label});
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      decoration: InputDecoration(
-        labelText: label,
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
         ),
       ),
     );

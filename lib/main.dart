@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
-import 'package:login_session/screens/splash_screen.dart';
+import 'package:login_session/screens/checkout_screen.dart';
+import 'package:login_session/screens/home_screen.dart';
+import 'package:login_session/screens/product_overview.dart';
 
 Future<void> main() async {
   runApp(
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: CheckoutScreen(),
     );
   }
 }
