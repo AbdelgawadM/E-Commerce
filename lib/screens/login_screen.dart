@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:login_session/components/custom_button.dart';
 import 'package:login_session/components/custom_text_form.dart';
+import 'package:login_session/components/statement_row.dart';
 import 'package:login_session/screens/forget_screen.dart';
 import 'package:login_session/screens/home_screen.dart';
 import 'package:login_session/screens/regist_scren.dart';
@@ -21,26 +23,23 @@ class LoginScreen extends StatelessWidget {
             SizedBox(height: 20),
             CustomTextForm(label: 'password'),
             SizedBox(height: 20),
-            SizedBox(
-              height: 50,
-              width: double.infinity,
-              child: ElevatedButton(
-                style: ButtonStyle(
-                  foregroundColor: WidgetStatePropertyAll(Colors.white),
-                  backgroundColor: WidgetStatePropertyAll(Color(0xFFEB5425)),
-                ),
-                onPressed: () {
-                  Navigator.of(
-                    context,
-                  ).push(MaterialPageRoute(builder: (context) => HomeScreen()));
-                },
-                child: Text('Login'),
-              ),
+            CustomButton(
+              buttonText: 'Login',
+              screen: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              },
             ),
+            SizedBox(height: 10),
             Align(
               alignment: Alignment.bottomRight,
               child: TextButton(
-                child: Text('forget password'),
+                child: Text(
+                  'forget password',
+                  style: TextStyle(color: Colors.black, fontSize: 15),
+                ),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -49,20 +48,15 @@ class LoginScreen extends StatelessWidget {
                 },
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('dont have account '),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => RegistScren()),
-                    );
-                  },
-                  child: Text("sign up"),
-                ),
-              ],
+            StatementRow(
+              statement: 'dont have Account ?',
+              buttonText: 'Sign Up Now',
+              screen: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => RegistScren()),
+                );
+              },
             ),
           ],
         ),

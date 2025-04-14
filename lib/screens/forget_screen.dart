@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_session/consts.dart';
 import 'package:login_session/screens/otp_screen.dart';
 
 class ForgetScreen extends StatelessWidget {
@@ -43,9 +44,7 @@ class ForgetScreen extends StatelessWidget {
                   child: ElevatedButton(
                     style: ButtonStyle(
                       foregroundColor: WidgetStatePropertyAll(Colors.white),
-                      backgroundColor: WidgetStatePropertyAll(
-                        Color(0xFFEB5425),
-                      ),
+                      backgroundColor: WidgetStatePropertyAll(kPrimaryColor),
                     ),
                     onPressed: () {
                       Navigator.push(

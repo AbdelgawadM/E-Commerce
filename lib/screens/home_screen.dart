@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:login_session/consts.dart';
 import 'package:login_session/screens/another_screen.dart';
+import 'package:login_session/screens/checkout_screen.dart';
 import 'package:login_session/screens/home_tab_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -16,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> _screens = [
     HomeTabScreen(),
-    AnotherScreen(text: 'cart'),
+    CheckoutScreen(),
     AnotherScreen(text: 'favourites'),
     AnotherScreen(text: 'profile'),
   ];
@@ -24,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body:
           _screens[_bottomNavIndex], // بدل ما نستخدم SingleChildScrollView هنا
       floatingActionButton: FloatingActionButton(
@@ -32,10 +35,13 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: AnimatedBottomNavigationBar(
+        iconSize: 30,
+        activeColor: kPrimaryColor,
+
         icons: [
           Icons.home,
           CupertinoIcons.cart,
-          CupertinoIcons.heart_fill,
+          CupertinoIcons.heart,
           CupertinoIcons.profile_circled,
         ],
         activeIndex: _bottomNavIndex,

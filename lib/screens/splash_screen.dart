@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:login_session/consts.dart';
 import 'package:login_session/screens/on_boarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -28,15 +30,37 @@ class _MyWidgetState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset('assets/images/freed.png', height: 300, width: 300),
-            const SizedBox(height: 20),
-            const CircularProgressIndicator(color: Color(0xffEB5425)),
-          ],
-        ),
+      body: Stack(
+        children: [
+          // Image as background
+          Image.asset(
+            'assets/images/image2.jpg',
+            fit: BoxFit.cover,
+            width:
+                double
+                    .infinity, // Ensures the image spans the full width of the screen
+            height:
+                double
+                    .infinity, // Ensures the image spans the full height of the screen
+          ),
+          // Overlapping content
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(color: kPrimaryColor, size: 150, CupertinoIcons.cart_fill),
+                Text(
+                  'AST Shop',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

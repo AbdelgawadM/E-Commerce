@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_session/components/board_item.dart';
-import 'package:login_session/screens/regist_scren.dart';
+import 'package:login_session/screens/login_screen.dart';
 import 'package:login_session/scrolling/scrolling_options.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -53,7 +53,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   ),
                   onTap: () {
                     Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => RegistScren()),
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
                     );
                   },
                 ),

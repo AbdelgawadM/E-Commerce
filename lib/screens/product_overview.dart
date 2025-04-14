@@ -2,21 +2,28 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fan_carousel_image_slider/fan_carousel_image_slider.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:login_session/consts.dart';
 import 'package:login_session/screens/checkout_screen.dart';
 
 class ProductOverview extends StatelessWidget {
-  const ProductOverview({super.key});
-  static const List<String> sampleImages = [
-    'assets/images/image1.jpg',
-    'assets/images/image2.jpg',
-    'assets/images/image3.jpg',
-    'assets/images/image4.jpg',
-  ];
+  const ProductOverview({
+    super.key,
+    required this.sampleImages,
+    required this.productName,
+    required this.description,
+    required this.price,
+  });
+  final List<String> sampleImages;
+  final String productName, description;
+  final double price;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
+
         title: Text(
           'Product Overview',
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -25,61 +32,65 @@ class ProductOverview extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20),
-            // Type 1
-            FanCarouselImageSlider.sliderType1(
-              imagesLink: sampleImages,
-              isAssets: true,
-              autoPlay: true,
-              sliderHeight: 350,
-              showIndicator: true,
-            ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  children: [
-                    Text(
-                      'T-Shirt',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25,
-                      ),
-                    ),
-                    Text('T-Shirt Child'),
-                  ],
-                ),
-                Text(
-                  '\$300.00',
-                  style: TextStyle(
-                    color: Color(0xFFE87376),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
+            Expanded(
+              child: ListView(
+                children: [
+                  SizedBox(height: 20),
+                  // Type 1
+                  FanCarouselImageSlider.sliderType1(
+                    imagesLink: sampleImages,
+                    isAssets: false,
+                    autoPlay: true,
+                    sliderHeight: 300,
+                    showIndicator: true,
                   ),
-                ),
-              ],
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        children: [
+                          SizedBox(
+                            width: 250,
+                            child: Text(
+                              productName,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        '\$$price',
+                        style: TextStyle(
+                          color: Color(0xFFE87376),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  RatingBar.builder(
+                    initialRating: 3,
+                    minRating: 1,
+                    direction: Axis.horizontal,
+                    allowHalfRating: true,
+                    itemCount: 5,
+                    itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                    itemBuilder:
+                        (context, _) => Icon(Icons.star, color: Colors.amber),
+                    onRatingUpdate: (double value) {},
+                  ),
+                  SizedBox(height: 20),
+                  Text(softWrap: true, description),
+                  SizedBox(height: 20),
+                ],
+              ),
             ),
-            SizedBox(height: 20),
-            RatingBar.builder(
-              initialRating: 3,
-              minRating: 1,
-              direction: Axis.horizontal,
-              allowHalfRating: true,
-              itemCount: 5,
-              itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-              itemBuilder:
-                  (context, _) => Icon(Icons.star, color: Colors.amber),
-              onRatingUpdate: (double value) {},
-            ),
-            SizedBox(height: 20),
-            Text(
-              'Flutter makes it easy and fast to build beautiful apps for mobile, web, and desktop from a single codebase.',
-            ),
-            SizedBox(height: 20),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -91,9 +102,17 @@ class ProductOverview extends StatelessWidget {
                     borderRadius: BorderRadius.circular(30),
                     color: Colors.black12,
                   ),
-                  child: Icon(
-                    color: Color(0xFFEB5425),
-                    CupertinoIcons.cart_fill,
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CheckoutScreen(),
+                        ),
+                      );
+                    },
+                    color: kPrimaryColor,
+                    icon: Icon(CupertinoIcons.cart_fill),
                   ),
                 ),
                 SizedBox(
@@ -102,9 +121,7 @@ class ProductOverview extends StatelessWidget {
                   child: ElevatedButton(
                     style: ButtonStyle(
                       foregroundColor: WidgetStatePropertyAll(Colors.white),
-                      backgroundColor: WidgetStatePropertyAll(
-                        Color.fromARGB(255, 230, 108, 112),
-                      ),
+                      backgroundColor: WidgetStatePropertyAll(kPrimaryColor),
                     ),
                     onPressed: () {
                       showModalBottomSheet(
@@ -179,7 +196,7 @@ class ProductOverview extends StatelessWidget {
                                         Text(
                                           '\$300.00',
                                           style: TextStyle(
-                                            color: Color(0xFFE87376),
+                                            color: kPrimaryColor,
                                             fontWeight: FontWeight.bold,
                                             fontSize: 20,
                                           ),
@@ -198,7 +215,7 @@ class ProductOverview extends StatelessWidget {
                                               ),
                                           backgroundColor:
                                               WidgetStatePropertyAll(
-                                                Color(0xFFE87376),
+                                                kPrimaryColor,
                                               ),
                                         ),
 
@@ -225,6 +242,7 @@ class ProductOverview extends StatelessWidget {
                 ),
               ],
             ),
+            SizedBox(height: 25),
           ],
         ),
       ),

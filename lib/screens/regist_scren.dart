@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:login_session/components/custom_button.dart';
 import 'package:login_session/components/custom_text_form.dart';
+import 'package:login_session/components/statement_row.dart';
 import 'package:login_session/screens/home_screen.dart';
-import 'package:login_session/screens/login_screen.dart';
 
 class RegistScren extends StatelessWidget {
   const RegistScren({super.key});
@@ -18,44 +19,28 @@ class RegistScren extends StatelessWidget {
             SizedBox(height: 30),
             CustomTextForm(label: 'Name'),
             SizedBox(height: 20),
-
             CustomTextForm(label: 'Email'),
             SizedBox(height: 20),
             CustomTextForm(label: 'password'),
             SizedBox(height: 20),
             CustomTextForm(label: 'confirm password'),
-            SizedBox(height: 20),
-
-            SizedBox(
-              height: 50,
-              width: double.infinity,
-              child: ElevatedButton(
-                style: ButtonStyle(
-                  foregroundColor: WidgetStatePropertyAll(Colors.white),
-                  backgroundColor: WidgetStatePropertyAll(Color(0xFFEB5425)),
-                ),
-                onPressed: () {
-                  Navigator.of(
-                    context,
-                  ).push(MaterialPageRoute(builder: (context) => HomeScreen()));
-                },
-                child: Text('Sign Up'),
-              ),
+            SizedBox(height: 30),
+            CustomButton(
+              buttonText: 'Sign Up',
+              screen: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              },
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('dont have account '),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()),
-                    );
-                  },
-                  child: Text("Login "),
-                ),
-              ],
+            SizedBox(height: 20),
+            StatementRow(
+              statement: 'Already have Account ?',
+              buttonText: 'Login Now',
+              screen: () {
+                Navigator.pop(context);
+              },
             ),
           ],
         ),
